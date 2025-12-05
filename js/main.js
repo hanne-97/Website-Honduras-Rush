@@ -156,7 +156,19 @@ jQuery(document).ready(function($) {
 	};
 	siteMagnificPopup();
 
-
+	 $('.popup-youtube').magnificPopup({
+       type: 'iframe',
+       iframe: {
+         patterns: {
+           youtube: {
+             index: 'youtube.com/',
+             id: 'v=',
+             src: 'https://www.youtube.com/embed/%id%?autoplay=0&rel=0&modestbranding=1&showinfo=0'
+           }
+         }
+       }
+     });
+     
 	var siteCarousel = function () {
 		if ( $('.nonloop-block-13').length > 0 ) {
 			$('.nonloop-block-13').owlCarousel({
