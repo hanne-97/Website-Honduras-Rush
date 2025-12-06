@@ -942,12 +942,25 @@ a:hover {
   }
 }
 
+/* El contenedor del slide */
 .block-12 {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
+/* --- la figura arriba --- */
 .block-12 figure {
-  position: relative;
+  width: 100%;
+  height: 230px; /* altura uniforme para todas las imágenes */
+  margin: 0;
+}
+
+.block-12 figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .block-12 figure:before {
@@ -977,9 +990,11 @@ a:hover {
   color: #fff;
 }
 
+/* --- texto debajo, mismo alto para todos --- */
 .block-12 .text {
-  position: relative;
-  top: -100px;
+  flex: 1; /* ocupa el resto del espacio disponible */
+  display: flex;
+  flex-direction: column;
 }
 
 .block-12 .text .meta {
@@ -990,13 +1005,23 @@ a:hover {
   margin-bottom: 20px;
 }
 
-.block-12 .text .text-inner {
-  -webkit-box-shadow: 0 0 20px -5px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 0 20px -5px rgba(0, 0, 0, 0.3);
+/* Aquí igualamos todos los .text-inner */
+.block-12 .text-inner {
   background: #fff;
-  padding: 10px;
-  margin-right: 30px;
-  position: relative;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 0 20px -5px rgba(0,0,0,0.3);
+
+  /* 👇 ESTO ES LA CLAVE PARA QUE LOS TRES SEAN IGUALES 👇 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Para que los headings y párrafos no expandan distinto */
+.block-12 .text-inner h2,
+.block-12 .text-inner p {
+  flex-shrink: 0;
 }
 
 @media (min-width: 576px) {
@@ -1005,9 +1030,9 @@ a:hover {
   }
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .block-12 .text .text-inner {
-    padding: 30px 40px;
+    padding: 15px;
   }
 }
 
@@ -1189,4 +1214,28 @@ a:hover {
   background-size: cover; /* Asegura que la imagen de fondo cubra todo el contenedor sin deformarse */
   background-position: center; /* Centra la imagen */
   background-repeat: no-repeat; /* Evita repeticiones */
+}
+
+/* --- igualar los 3 slides --- */
+.nonloop-block-13 .owl-stage {
+  display: flex;
+  align-items: stretch; /* hace que todos los .owl-item se estiren a la misma altura */
+}
+
+/* --- cada item se estira igual --- */
+.nonloop-block-13 .owl-item,
+.nonloop-block-13 .item,
+.nonloop-block-13 .block-12 {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Agregar espacio entre cada slide */
+.nonloop-block-13 .owl-stage {
+  padding: 0 15px; /* espacio general */
+}
+
+.nonloop-block-13 .owl-item {
+  margin: 0 15px; /* separación entre cada item */
 }
