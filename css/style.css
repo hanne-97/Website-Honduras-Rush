@@ -1239,3 +1239,20 @@ a:hover {
 .nonloop-block-13 .owl-item {
   margin: 0 15px; /* separación entre cada item */
 }
+
+.card-header h5.mb-0 {
+  margin: 0;         /* elimina margen superior e inferior */
+  padding: 0;        /* opcional: si quieres que el padding lo controle el card-header */
+  overflow: hidden;  /* asegura que nada se desborde */
+  word-wrap: break-word; /* rompe palabras largas si es necesario */
+}
+
+.card-header .btn {
+  white-space: normal; /* permite que el texto haga salto de línea */
+  text-align: left;    /* mantiene alineado a la izquierda */
+  word-wrap: break-word; /* rompe palabras muy largas si es necesario */
+}
+
+.text-red {
+  color: red;
+}
