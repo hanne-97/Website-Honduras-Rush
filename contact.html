@@ -79,12 +79,12 @@
       </nav>
     </header>
   
-    <div class="site-blocks-cover overlay" style="background-image: url(images/hero_bg_3.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="site-blocks-cover overlay" style="background-image: url(images/img_bg2.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row align-items-center justify-content-start">
           <div class="col-md-6 text-center text-md-left" data-aos="fade-up" data-aos-delay="400">
-            <h1 class="bg-text-line">Contact Us</h1>
-            <p class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad maxime velit nostrum praesentium voluptatem. Mollitia perferendis dolore dolores.</p>
+            <h1 class="bg-text-line">Contáctanos</h1>
+            <p class="mt-4">Comunícate con nosotros para resolver tus dudas, coordinar inscripciones o recibir más información sobre el club. Nuestro equipo está listo para atenderte y responder tus mensajes a la brevedad.</p>
           </div>
         </div>
       </div>
@@ -95,57 +95,99 @@
       <div class="container">
         <div class="row align-items-first">
           <div class="col-md-7">
-            <form action="#" method="post" class="bg-white">
-              
+            <form id="contactForm" action="https://formspree.io/f/movgnneb" method="POST" class="bg-white">
               <div class="p-3 p-lg-5 border">
+                
                 <div class="form-group row">
                   <div class="col-md-6">
-                    <label for="c_fname" class="text-black">First Name <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="c_fname" name="c_fname">
+                    <label for="c_fname" class="text-black">Nombre<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="c_fname" name="c_fname" required>
                   </div>
                   <div class="col-md-6">
-                    <label for="c_lname" class="text-black">Last Name <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="c_lname" name="c_lname">
+                    <label for="c_lname" class="text-black">Apellido<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="c_lname" name="c_lname" required>
                   </div>
                 </div>
+
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_email" class="text-black">Email <span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" id="c_email" name="c_email" placeholder="">
+                    <label for="c_email" class="text-black">Correo <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" id="c_email" name="c_email" required>
                   </div>
                 </div>
+
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_subject" class="text-black">Subject </label>
+                    <label for="c_subject" class="text-black">Asunto</label>
                     <input type="text" class="form-control" id="c_subject" name="c_subject">
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_message" class="text-black">Message </label>
+                    <label for="c_message" class="text-black">Mensaje</label>
                     <textarea name="c_message" id="c_message" cols="30" rows="7" class="form-control"></textarea>
                   </div>
                 </div>
+
                 <div class="form-group row">
                   <div class="col-lg-12">
-                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Send Message">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Enviar Mensaje</button>
                   </div>
                 </div>
+
+                <!-- Mensaje de confirmación -->
+                <div id="formSuccess" style="display:none; margin-top:15px;" class="alert alert-success">
+                  ¡Gracias! Tu mensaje ha sido enviado.
+                </div>
+                <div id="formError" style="display:none; margin-top:15px;" class="alert alert-danger">
+                  ¡Ups! Algo salió mal. Intenta nuevamente.
+                </div>
+
               </div>
             </form>
+
+            <script>
+            document.getElementById('contactForm').addEventListener('submit', function(e){
+              e.preventDefault(); // evita recargar la página
+              var form = e.target;
+              
+              fetch(form.action, {
+                method: form.method,
+                body: new FormData(form),
+                headers: {
+                  'Accept': 'application/json'
+                }
+              }).then(response => {
+                if (response.ok) {
+                  document.getElementById('formSuccess').style.display = 'block';
+                  document.getElementById('formError').style.display = 'none';
+                  form.reset(); // limpia el formulario
+                } else {
+                  document.getElementById('formError').style.display = 'block';
+                  document.getElementById('formSuccess').style.display = 'none';
+                }
+              }).catch(error => {
+                document.getElementById('formError').style.display = 'block';
+                document.getElementById('formSuccess').style.display = 'none';
+              });
+            });
+            </script>
+
           </div>
 
           <div class="col-md-5">
             <div class="p-4 border mb-3 bg-white">
-              <p class="mb-0">Address</p>
-              <p class="mb-4">203 Fake St. Mountain View, San Francisco, California, USA</p>
+              <p class="mb-0">Dirección</p>
+              <p class="mb-4">Cancha. Universidad Pedagógica, TGU</p>
+              <p class="mb-4">Cancha. Super Liga Anillo Periférico, TGU</p>
 
-              <p class="mb-0">Phone</p>
-              <p class="mb-4"><a href="#">+1 232 3235 324</a></p>
 
-              <p class="mb-0">Email Address</p>
-              <p class="mb-4"><a href="#">youremail@domain.com</a></p>
+              <p class="mb-0">Celular</p>
+              <p class="mb-4"><a href="tel:+50499138128">+504 9913-8128</a></p>
+
+              <p class="mb-0">Correo Electrónico</p>
+              <p class="mb-4"><a href="mailto:hondurasrushfutbolclub@gmail.com">hondurasrushfutbolclub@gmail.com</a></p>
 
             </div>
             
@@ -161,34 +203,31 @@
       <div class="container">
         <div class="row mb-5">
           <div class="col-md-12 text-center">
-            <h2 class="text-black">Match Highlights</h2>
+            <h2 class="text-black">Galería</h2>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6 col-lg-4" data-aos="fade" data-aos-delay="100">
-            <div class="p-3 p-md-5 feature-block-1 mb-5 mb-lg-0 bg" style="background-image: url('images/img_1.jpg');">
+            <div class="p-3 p-md-5 feature-block-1 mb-5 mb-lg-0 bg" style="background-image: url('images/img_g7.jpg');">
               <div class="text">
-                <h2 class="h5 text-white">Russia's World Cup Championship</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellat autem illum nostrum sit distinctio!</p>
-                <p class="mb-0"><a href="#" class="btn btn-primary btn-sm px-4 py-2 rounded-0">Read More</a></p>
+                <h2 class="h5 text-white">Orgullo Hondureño</h2>
+                <p>Jugador del club mostrando con orgullo el escudo en plena cancha, reflejando la pasión y compromiso del equipo en cada partido.</p>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4" data-aos="fade" data-aos-delay="200">
-            <div class="p-3 p-md-5 feature-block-1 mb-5 mb-lg-0 bg" style="background-image: url('images/img_2.jpg');">
+            <div class="p-3 p-md-5 feature-block-1 mb-5 mb-lg-0 bg" style="background-image: url('images/img_g8.jpg');">
               <div class="text">
-                <h2 class="h5 text-white">Russia's World Cup Championship</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellat autem illum nostrum sit distinctio!</p>
-                <p class="mb-0"><a href="#" class="btn btn-primary btn-sm px-4 py-2 rounded-0">Read More</a></p>
+                <h2 class="h5 text-white">Futbolistas listas para la acción</h2>
+                <p>Dos jugadoras del club posan con el balón en la cancha, luciendo la indumentaria oficial y representando el talento y la fuerza del fútbol femenino en el equipo.</p>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4" data-aos="fade" data-aos-delay="300">
-            <div class="p-3 p-md-5 feature-block-1 mb-5 mb-lg-0 bg" style="background-image: url('images/img_3.jpg');">
+            <div class="p-3 p-md-5 feature-block-1 mb-5 mb-lg-0 bg" style="background-image: url('images/img_g9.jpg');">
               <div class="text">
-                <h2 class="h5 text-white">Russia's World Cup Championship</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellat autem illum nostrum sit distinctio!</p>
-                <p class="mb-0"><a href="#" class="btn btn-primary btn-sm px-4 py-2 rounded-0">Read More</a></p>
+                <h2 class="h5 text-white">Orgullo por Nuestros Colores</h2>
+                <p>Jugadores y cuerpo técnico posan con la bandera, celebrando la identidad y el orgullo de representar a su país y a su club en la cancha.</p>
               </div>
             </div>
           </div>
